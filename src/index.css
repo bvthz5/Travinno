@@ -1104,7 +1104,7 @@ button, a {
    ========================================================================== */
 
 .logo-cloud-section {
-  background-color: #FFFFFF;
+  background-color: #000000;
   width: 100%;
   padding: 120px 24px 160px 24px;
   display: flex;
@@ -1129,7 +1129,7 @@ button, a {
   font-weight: 500;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.45);
+  color: rgba(255, 255, 255, 0.45);
   margin-bottom: 20px;
   text-align: center;
 }
@@ -1138,7 +1138,7 @@ button, a {
   font-family: 'Satoshi', var(--font-sans);
   font-size: 18px;
   line-height: 1.8;
-  color: rgba(0, 0, 0, 0.75);
+  color: rgba(255, 255, 255, 0.75);
   max-width: 650px;
   margin-bottom: 80px;
   text-align: center;
@@ -1150,8 +1150,8 @@ button, a {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
-  border-left: 1px solid rgba(0, 0, 0, 0.08);
-  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .logo-grid::before {
@@ -1161,7 +1161,7 @@ button, a {
   left: 50%;
   transform: translateX(-50%);
   width: 200vw;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   pointer-events: none;
 }
 
@@ -1172,7 +1172,7 @@ button, a {
   left: 50%;
   transform: translateX(-50%);
   width: 200vw;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   pointer-events: none;
 }
 
@@ -1182,27 +1182,27 @@ button, a {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #FFFFFF;
+  background-color: #000000;
   padding: 32px;
   height: 120px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .logo-card.bg-secondary-cell {
-  background-color: #F9F9F9;
+  background-color: #050505;
 }
 
 .logo-card.bg-secondary-mobile-only {
-  background-color: #F9F9F9;
+  background-color: #050505;
 }
 
 .logo-card.bg-secondary-desktop-only {
-  background-color: #FFFFFF;
+  background-color: #000000;
 }
 
 /* Mobile defaults (2 columns) */
 .logo-card:nth-child(odd) {
-  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .logo-card:nth-child(7),
@@ -1214,7 +1214,7 @@ button, a {
 .logo-plus-icon {
   position: absolute;
   z-index: 10;
-  color: rgba(0, 0, 0, 0.25);
+  color: rgba(255, 255, 255, 0.25);
   pointer-events: none;
   width: 24px;
   height: 24px;
@@ -1236,7 +1236,7 @@ button, a {
   height: 20px;
   width: auto;
   opacity: 0.65;
-  filter: brightness(0);
+  filter: brightness(0) invert(1);
   transition: opacity 0.3s ease;
 }
 
@@ -1267,14 +1267,14 @@ button, a {
   .logo-card:nth-child(5),
   .logo-card:nth-child(6),
   .logo-card:nth-child(7) {
-    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
   }
   
   .logo-card:nth-child(1),
   .logo-card:nth-child(2),
   .logo-card:nth-child(3),
   .logo-card:nth-child(4) {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
   
   .logo-card:nth-child(5),
@@ -1285,11 +1285,11 @@ button, a {
   }
 
   .logo-card.bg-secondary-mobile-only {
-    background-color: #FFFFFF;
+    background-color: #000000;
   }
 
   .logo-card.bg-secondary-desktop-only {
-    background-color: #F9F9F9;
+    background-color: #050505;
   }
 }
 
@@ -1331,8 +1331,12 @@ button, a {
    Why Travinno Section (Card Grid Layout matching Expertise style)
    ========================================================================== */
 
+/* ==========================================================================
+   Why Travinno Section (Card Grid Layout matching Expertise style)
+   ========================================================================== */
+
 .why-section {
-  background-color: #000000;
+  background-color: #FFFFFF;
   width: 100%;
   padding: 120px 24px 140px 24px;
   display: flex;
@@ -1356,7 +1360,7 @@ button, a {
   font-weight: 500;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(0, 0, 0, 0.45);
   margin-bottom: 20px;
   text-align: center;
   display: block;
@@ -1367,7 +1371,7 @@ button, a {
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   font-weight: 500;
   line-height: 1.1;
-  color: #FFFFFF;
+  color: #000000;
   max-width: 800px;
   margin-bottom: 80px;
   text-align: center;
@@ -1382,8 +1386,8 @@ button, a {
 }
 
 .why-card {
-  background-color: #0F0F0F;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background-color: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 16px;
   padding: 28px;
   display: flex;
@@ -1395,8 +1399,8 @@ button, a {
 }
 
 .why-card:hover {
-  background-color: #141414;
-  border-color: rgba(255, 255, 255, 0.12);
+  background-color: #FAFAFA;
+  border-color: rgba(0, 0, 0, 0.16);
   transform: translate3d(0, -3px, 0);
 }
 
@@ -1404,7 +1408,7 @@ button, a {
   font-family: 'Satoshi', var(--font-sans);
   font-size: 20px;
   font-weight: 500;
-  color: #FFFFFF;
+  color: #000000;
   margin-bottom: 12px;
 }
 
@@ -1413,7 +1417,7 @@ button, a {
   font-size: 14px;
   line-height: 1.6;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(0, 0, 0, 0.65);
 }
 
 /* Tablet Layout (768px to 1023px) */
