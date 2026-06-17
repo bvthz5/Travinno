@@ -5,37 +5,37 @@ const destinationsData = [
   {
     name: 'Dubai',
     subtitle: 'Luxury Experiences',
-    image: '/images/dubai.png'
+    image: 'images/dubai.png'
   },
   {
     name: 'Kenya',
     subtitle: 'Safari Adventures',
-    image: '/images/kenya.png'
+    image: 'images/kenya.png'
   },
   {
     name: 'Thailand',
     subtitle: 'Island Escapes',
-    image: '/images/thailand.png'
+    image: 'images/thailand.png'
   },
   {
     name: 'Vietnam',
     subtitle: 'Cultural Journeys',
-    image: '/images/vietnam.png'
+    image: 'images/vietnam.png'
   },
   {
     name: 'Singapore',
     subtitle: 'Modern Wonders',
-    image: '/images/singapore.png'
+    image: 'images/singapore.png'
   },
   {
     name: 'Malaysia',
     subtitle: 'Tropical Retreats',
-    image: '/images/malaysia.png'
+    image: 'images/malaysia.png'
   },
   {
     name: 'Bali',
     subtitle: 'Wellness & Discovery',
-    image: '/images/bali.png'
+    image: 'images/bali.png'
   }
 ];
 
@@ -69,7 +69,7 @@ export default function DestinationShowcase() {
             {destinationsData.map((dest, index) => (
               <div key={`track1-${index}`} className="destination-panel">
                 <img
-                  src={dest.image}
+                  src={`${import.meta.env.BASE_URL}${dest.image}`}
                   alt={dest.name}
                   className="destination-image"
                   loading="lazy"
@@ -91,7 +91,7 @@ export default function DestinationShowcase() {
             {destinationsData.map((dest, index) => (
               <div key={`track2-${index}`} className="destination-panel">
                 <img
-                  src={dest.image}
+                  src={`${import.meta.env.BASE_URL}${dest.image}`}
                   alt={dest.name}
                   className="destination-image"
                   loading="lazy"
