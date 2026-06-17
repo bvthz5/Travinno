@@ -87,7 +87,7 @@ function App() {
             }}
           >
             {/* Cinematic Loop Video Background */}
-            <BackgroundVideo src="/video/0615.mp4" />
+            <BackgroundVideo src={`${import.meta.env.BASE_URL}video/0615.mp4`} />
 
             {/* Centered Editorial Content */}
             <ContentSection />
