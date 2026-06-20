@@ -1,72 +1,65 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const testimonials = [
+const ROW_1_TESTIMONIALS = [
   {
-    text: "This ERP revolutionized our operations, streamlining finance and inventory. The cloud-based platform keeps us productive, even remotely.",
-    image: "https://randomuser.me/api/portraits/women/1.jpg",
-    name: "Briana Patton",
-    role: "Operations Manager",
+    text: "Our Singapore corporate retreat was planned down to the millisecond. The Gardens by the Bay dining experience was breathtaking. Absolute perfection in DMC management.",
+    image: "https://randomuser.me/api/portraits/women/11.jpg",
+    name: "Sarah Jenkins",
+    company: "Global Events Director, TechCorp (UK)",
   },
   {
-    text: "Implementing this ERP was smooth and quick. The customizable, user-friendly interface made team training effortless.",
-    image: "https://randomuser.me/api/portraits/men/2.jpg",
-    name: "Bilal Ahmed",
-    role: "IT Manager",
+    text: "A bespoke Kenya safari that exceeded every luxury expectation. Waking up to giraffes framing our private camp is a memory our executives will cherish forever.",
+    image: "https://randomuser.me/api/portraits/men/22.jpg",
+    name: "David Vance",
+    company: "Managing Director, Peak Capital (USA)",
   },
   {
-    text: "The support team is exceptional, guiding us through setup and providing ongoing assistance, ensuring our satisfaction.",
-    image: "https://randomuser.me/api/portraits/women/3.jpg",
-    name: "Saman Malik",
-    role: "Customer Support Lead",
+    text: "The transition from the modern Singapore skyline to Bali's tranquil rice terraces was completely seamless. Travinno's local guides are extraordinary.",
+    image: "https://randomuser.me/api/portraits/women/33.jpg",
+    name: "Elena Rostova",
+    company: "Private Travel Designer (Switzerland)",
   },
   {
-    text: "This ERP's seamless integration enhanced our business operations and efficiency. Highly recommend for its intuitive interface.",
-    image: "https://randomuser.me/api/portraits/men/4.jpg",
-    name: "Omar Raza",
-    role: "CEO",
-  },
-  {
-    text: "Its robust features and quick support have transformed our workflow, making us significantly more efficient.",
-    image: "https://randomuser.me/api/portraits/women/5.jpg",
-    name: "Zainab Hussain",
-    role: "Project Manager",
-  },
-  {
-    text: "The smooth implementation exceeded expectations. It streamlined processes, improving overall business performance.",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
-    name: "Aliza Khan",
-    role: "Business Analyst",
-  },
-  {
-    text: "Our business functions improved with a user-friendly design and positive customer feedback.",
-    image: "https://randomuser.me/api/portraits/men/7.jpg",
-    name: "Farhan Siddiqui",
-    role: "Marketing Director",
-  },
-  {
-    text: "They delivered a solution that exceeded expectations, understanding our needs and enhancing our operations.",
-    image: "https://randomuser.me/api/portraits/women/8.jpg",
-    name: "Sana Sheikh",
-    role: "Sales Manager",
-  },
-  {
-    text: "Using this ERP, our online presence and conversions significantly improved, boosting business performance.",
-    image: "https://randomuser.me/api/portraits/men/9.jpg",
-    name: "Hassan Ali",
-    role: "E-commerce Manager",
+    text: "Operational excellence at its finest. Managing an incentive group of 150 across Dubai and Malaysia was flawless, all thanks to the local expertise of Travinno.",
+    image: "https://randomuser.me/api/portraits/men/44.jpg",
+    name: "Marcus Thorn",
+    company: "Incentive Travel Director, Apex Group (Canada)",
   }
 ];
 
-const firstColumn = testimonials.slice(0, 3);
-const secondColumn = testimonials.slice(3, 6);
-const thirdColumn = testimonials.slice(6, 9);
+const ROW_2_TESTIMONIALS = [
+  {
+    text: "Their attention to detail and relationships with high-end resorts in Thailand and Bali made our luxury wellness summit a resounding success.",
+    image: "https://randomuser.me/api/portraits/women/55.jpg",
+    name: "Zainab Al-Mansoori",
+    company: "Founder, Retreats Elite (UAE)",
+  },
+  {
+    text: "Flawless logistics, curated local dining, and exceptional luxury vessels. Every detail is handled with absolute professionalism and discretion.",
+    image: "https://randomuser.me/api/portraits/men/66.jpg",
+    name: "Christian Dumont",
+    company: "Directeur Voyage, Elite Club (France)",
+  },
+  {
+    text: "As a private travel designer, my clients demand the absolute best. Travinno delivers extraordinary journeys with absolute precision, every single time.",
+    image: "https://randomuser.me/api/portraits/women/77.jpg",
+    name: "Aiko Tanaka",
+    company: "Bespoke Travel Consultant (Japan)",
+  },
+  {
+    text: "A masterclass in luxury destination management. From the helicopter transfers to private island buyouts, their execution is flawless.",
+    image: "https://randomuser.me/api/portraits/men/88.jpg",
+    name: "Rupert Sterling",
+    company: "CEO, Sterling Concierge (Australia)",
+  }
+];
 
-function TestimonialCard({ text, image, name, role }) {
+function TestimonialCard({ text, image, name, company }) {
   return (
     <div className="new-testimonial-card">
-      <div className="new-testimonial-text">{text}</div>
-      <div className="new-testimonial-footer">
+      <span className="new-testimonial-quote">“</span>
+      <div className="new-testimonial-header">
         <img
           src={image}
           alt={name}
@@ -75,37 +68,15 @@ function TestimonialCard({ text, image, name, role }) {
         />
         <div className="new-testimonial-info">
           <div className="new-testimonial-name">{name}</div>
-          <div className="new-testimonial-role">{role}</div>
+          <div className="new-testimonial-company">{company}</div>
         </div>
       </div>
-    </div>
-  );
-}
-
-function TestimonialsColumn({ testimonialsList, duration, className = "" }) {
-  return (
-    <div className={`new-testimonials-col ${className}`}>
-      <motion.div
-        animate={{
-          translateY: "-50%",
-        }}
-        transition={{
-          duration: duration || 10,
-          repeat: Infinity,
-          ease: "linear",
-          repeatType: "loop",
-        }}
-        className="new-testimonials-col-track"
-      >
-        {/* Render 2 sets for seamless loop */}
-        {[0, 1].map((setIndex) => (
-          <React.Fragment key={setIndex}>
-            {testimonialsList.map((item, idx) => (
-              <TestimonialCard key={`set-${setIndex}-${idx}`} {...item} />
-            ))}
-          </React.Fragment>
+      <div className="new-testimonial-stars">
+        {[...Array(5)].map((_, i) => (
+          <span key={i} className="new-testimonial-star">★</span>
         ))}
-      </motion.div>
+      </div>
+      <p className="new-testimonial-text">{text}</p>
     </div>
   );
 }
@@ -113,7 +84,9 @@ function TestimonialsColumn({ testimonialsList, duration, className = "" }) {
 export default function TestimonialsSection() {
   return (
     <section className="new-testimonials-section" id="insights">
+      <div className="new-testimonials-grid-bg" />
       <div className="section-blend-overlay blend-to-05" />
+
       <div className="new-testimonials-container">
         {/* Intro Header */}
         <motion.div
@@ -128,18 +101,32 @@ export default function TestimonialsSection() {
           </div>
 
           <h2 className="new-testimonials-title">
-            What our users say
+            Exceptional Stories
           </h2>
           <p className="new-testimonials-subtitle">
-            See what our customers have to say about us.
+            Discover what travel designers and corporate planners say about our extraordinary journeys.
           </p>
         </motion.div>
 
-        {/* 3-Column Viewport with top/bottom fade */}
-        <div className="new-testimonials-viewport">
-          <TestimonialsColumn testimonialsList={firstColumn} duration={15} />
-          <TestimonialsColumn testimonialsList={secondColumn} className="hidden-tablet" duration={19} />
-          <TestimonialsColumn testimonialsList={thirdColumn} className="hidden-desktop" duration={17} />
+        {/* Horizontal Testimonials Wall */}
+        <div className="testimonials-wall">
+          {/* Top Row: Right to Left */}
+          <div className="testimonial-row-container">
+            <div className="testimonial-marquee-track right-to-left">
+              {[...ROW_1_TESTIMONIALS, ...ROW_1_TESTIMONIALS].map((item, idx) => (
+                <TestimonialCard key={`row1-${idx}`} {...item} />
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom Row: Left to Right */}
+          <div className="testimonial-row-container">
+            <div className="testimonial-marquee-track left-to-right">
+              {[...ROW_2_TESTIMONIALS, ...ROW_2_TESTIMONIALS].map((item, idx) => (
+                <TestimonialCard key={`row2-${idx}`} {...item} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
