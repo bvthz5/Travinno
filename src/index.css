@@ -1110,14 +1110,14 @@ a {
 .partners-marquee-container {
   overflow: hidden;
   width: 100%;
-  max-width: 1300px;
+  max-width: 1100px;
   margin: 0 auto;
   position: relative;
   display: flex;
-  padding: 20px 48px;
+  padding: 20px 80px;
   user-select: none;
-  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
 }
 
 .partners-marquee-track {
@@ -1194,7 +1194,7 @@ a {
   }
 
   .partners-marquee-container {
-    padding: 20px 32px;
+    padding: 20px 48px;
   }
 
   .partners-marquee-track {
@@ -1228,7 +1228,7 @@ a {
   }
 
   .partners-marquee-container {
-    padding: 20px 20px;
+    padding: 20px 32px;
   }
 
   .partners-marquee-track {
