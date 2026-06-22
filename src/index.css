@@ -1110,10 +1110,14 @@ a {
 .partners-marquee-container {
   overflow: hidden;
   width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
   position: relative;
   display: flex;
-  padding: 20px 0;
+  padding: 20px 48px;
   user-select: none;
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
 }
 
 .partners-marquee-track {
@@ -1149,6 +1153,7 @@ a {
   width: auto;
   display: block;
   object-fit: contain;
+  filter: brightness(0) invert(1);
 }
 
 .pin-divider {
@@ -1188,6 +1193,10 @@ a {
     margin-bottom: 70px;
   }
 
+  .partners-marquee-container {
+    padding: 20px 32px;
+  }
+
   .partners-marquee-track {
     gap: 36px;
   }
@@ -1216,6 +1225,10 @@ a {
 
   .logo-cloud-header {
     margin-bottom: 50px;
+  }
+
+  .partners-marquee-container {
+    padding: 20px 20px;
   }
 
   .partners-marquee-track {
