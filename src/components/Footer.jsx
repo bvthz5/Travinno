@@ -335,7 +335,7 @@ export default function Footer() {
             fontWeight: 900,
             letterSpacing: '0.22em',
             color: 'transparent',
-            WebkitTextStroke: '1px rgba(245, 242, 236, 0.022)',
+            WebkitTextStroke: '1px rgba(245, 242, 236, 0.07)',
             whiteSpace: 'nowrap',
             userSelect: 'none',
             zIndex: 1
@@ -491,12 +491,13 @@ export default function Footer() {
           </h4>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {[
-              { name: 'Dubai & UAE', href: '#destinations' },
-              { name: 'Malaysia', href: '#destinations' },
+              { name: 'Dubai', href: '#destinations' },
+              { name: 'Kenya', href: '#destinations' },
               { name: 'Thailand', href: '#destinations' },
-              { name: 'Saudi Arabia', href: '#destinations' },
-              { name: 'Maldives', href: '#destinations' },
-              { name: 'Kerala (India)', href: '#destinations' }
+              { name: 'Bali', href: '#destinations' },
+              { name: 'Singapore', href: '#destinations' },
+              { name: 'Malaysia', href: '#destinations' },
+              { name: 'Vietnam', href: '#destinations' }
             ].map((link, idx) => (
               <li key={idx}>
                 <a

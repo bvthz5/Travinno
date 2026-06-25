@@ -130,6 +130,18 @@ export default function AboutJourney() {
   const [flippingTo, setFlippingTo] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
+  // Refs to store activeIndex and isFlipping state to prevent duplicate ScrollTrigger rebuilding on state changes
+  const activeIndexRef = useRef(activeIndex);
+  const isFlippingRef = useRef(isFlipping);
+
+  useEffect(() => {
+    activeIndexRef.current = activeIndex;
+  }, [activeIndex]);
+
+  useEffect(() => {
+    isFlippingRef.current = isFlipping;
+  }, [isFlipping]);
+
   // Monitor viewport size for layout layout responsiveness
   useEffect(() => {
     const checkMobile = () => {
@@ -147,43 +159,52 @@ export default function AboutJourney() {
     const container = containerRef.current;
     if (!container) return;
 
-    const st = ScrollTrigger.create({
-      trigger: container,
-      start: "top top",
-      end: "bottom bottom",
-      pin: true,
-      scrub: true,
-      snap: {
-        snapTo: 1 / 6,
-        duration: { min: 0.5, max: 0.8 },
-        ease: "power2.out",
-        delay: 0.05
-      },
-      onUpdate: (self) => {
-        const progress = self.progress;
-        const targetIdx = Math.min(6, Math.max(0, Math.round(progress * 6)));
-        
-        // Trigger page flip animation if scroll crosses a boundary and not already flipping
-        if (targetIdx !== activeIndex && !isFlipping) {
-          const dir = targetIdx > activeIndex ? 'down' : 'up';
-          setFlipDirection(dir);
-          setFlippingFrom(activeIndex);
-          setFlippingTo(targetIdx);
-          setIsFlipping(true);
+    if (window.innerWidth < 1024) {
+      return;
+    }
 
-          // Complete flip after 850ms (corresponds to CSS animation speed)
-          setTimeout(() => {
-            setActiveIndex(targetIdx);
-            setIsFlipping(false);
-          }, 850);
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: container,
+        start: "top top",
+        end: "bottom bottom",
+        pin: true,
+        scrub: true,
+        snap: {
+          snapTo: 1 / 6,
+          duration: { min: 0.5, max: 0.8 },
+          ease: "power2.out",
+          delay: 0.05
+        },
+        onUpdate: (self) => {
+          const progress = self.progress;
+          const targetIdx = Math.min(6, Math.max(0, Math.round(progress * 6)));
+          
+          const currentActive = activeIndexRef.current;
+          const currentFlipping = isFlippingRef.current;
+
+          // Trigger page flip animation if scroll crosses a boundary and not already flipping
+          if (targetIdx !== currentActive && !currentFlipping) {
+            const dir = targetIdx > currentActive ? 'down' : 'up';
+            setFlipDirection(dir);
+            setFlippingFrom(currentActive);
+            setFlippingTo(targetIdx);
+            setIsFlipping(true);
+
+            // Complete flip after 850ms (corresponds to CSS animation speed)
+            setTimeout(() => {
+              setActiveIndex(targetIdx);
+              setIsFlipping(false);
+            }, 850);
+          }
         }
-      }
-    });
+      });
+    }, container);
 
     return () => {
-      st.kill();
+      ctx.revert();
     };
-  }, [activeIndex, isFlipping]);
+  }, []);
 
   // Render left scrapbook page
   const renderLeftPage = (idx) => {

@@ -111,7 +111,7 @@ export default function ContactCTA() {
           fontWeight: 900,
           letterSpacing: '0.05em',
           color: 'transparent',
-          WebkitTextStroke: '1px rgba(255, 255, 255, 0.03)',
+          WebkitTextStroke: '1px rgba(255, 255, 255, 0.08)',
           pointerEvents: 'none',
           zIndex: 1,
           userSelect: 'none'

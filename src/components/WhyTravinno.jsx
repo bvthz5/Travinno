@@ -444,13 +444,14 @@ function ProvenExperienceVisual({ isHovered }) {
       </g>
       
       {/* 150K+ Travellers */}
-      <g transform="translate(230, 95)">
-        <text x="0" y="0" fill={isHovered ? "#fff" : "#F5F2EC"} fontSize="30" fontWeight="500" fontFamily="var(--font-heading)" letterSpacing="0.5" className="transition-colors duration-300">150K+</text>
+      <g transform="translate(240, 95)">
+        <text x="12" y="0" fill={isHovered ? "#fff" : "#F5F2EC"} fontSize="30" fontWeight="500" fontFamily="var(--font-heading)" letterSpacing="0.5" className="transition-colors duration-300">150K+</text>
         <text x="0" y="16" fill="rgba(245, 242, 236, 0.4)" fontSize="8.5" fontFamily="var(--font-mono)" letterSpacing="1.2">HAPPY TRAVELLERS</text>
       </g>
 
+      
       {/* 47 Partners */}
-      <g transform="translate(150, 165)">
+      <g transform="translate(200, 165)">
         <text x="0" y="0" fill={isHovered ? "#C1121F" : "rgba(245,242,236,0.85)"} fontSize="34" fontWeight="500" fontFamily="var(--font-heading)" letterSpacing="0.5" className="transition-colors duration-300" textAnchor="middle">47</text>
         <text x="0" y="16" fill="rgba(245, 242, 236, 0.4)" fontSize="8.5" fontFamily="var(--font-mono)" letterSpacing="1.5" textAnchor="middle">PREFERRED PARTNERS</text>
       </g>

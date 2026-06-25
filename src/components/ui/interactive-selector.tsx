@@ -131,61 +131,70 @@ export default function InteractiveSelector() {
 
     const cards = cardRefs.current;
 
-    // Reset initial card styles programmatically
-    cards.forEach((card, idx) => {
-      if (!card) return;
-      if (idx === 0) {
-        gsap.set(card, { y: "0px", opacity: 1, scale: 1 });
-      } else {
-        gsap.set(card, { y: "100vh", opacity: 1, scale: 1 });
-      }
-    });
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container,
-        start: "top top",
-        end: "+=1500vh",
-        scrub: 1,
-        pin: true,
-        onUpdate: (self) => {
-          const progress = self.progress;
-          const targetIdx = Math.min(6, Math.max(0, Math.round(progress * 6)));
-          setActiveIndex(targetIdx);
-        }
-      }
-    });
-
-    // Animate Card Stacking Transitions
-    for (let i = 1; i < 7; i++) {
-      const position = i - 1; // absolute start position in timeline
-
-      // 1. Outgoing Card (i-1) - moves up slightly, scales down slightly, remains fully opaque
-      if (cards[i - 1]) {
-        tl.to(cards[i - 1], {
-          y: "-30px",
-          opacity: 1,
-          scale: 0.97,
-          duration: 1,
-          ease: "none"
-        }, position);
-      }
-
-      // 2. Incoming Card (i) - slides up, remains fully opaque
-      if (cards[i]) {
-        tl.fromTo(cards[i],
-          { y: "100vh", opacity: 1, scale: 1 },
-          { y: "0px", opacity: 1, scale: 1, duration: 1, ease: "none" },
-          position
-        );
-      }
+    // Check if we are on mobile/tablet viewports
+    if (window.innerWidth < 1024) {
+      // Clear any GSAP styles to let CSS flexbox handle layout natively
+      cards.forEach((card) => {
+        if (card) gsap.set(card, { clearProps: "all" });
+      });
+      return;
     }
 
-    return () => {
-      if (tl.scrollTrigger) {
-        tl.scrollTrigger.kill();
+    // Set up GSAP context for proper lifecycle cleanup in React
+    const ctx = gsap.context(() => {
+      // Reset initial card styles programmatically
+      cards.forEach((card, idx) => {
+        if (!card) return;
+        if (idx === 0) {
+          gsap.set(card, { y: "0px", opacity: 1, scale: 1 });
+        } else {
+          gsap.set(card, { y: "100vh", opacity: 1, scale: 1 });
+        }
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: container,
+          start: "top top",
+          end: "+=500vh", // Shorter and much more responsive desktop scroll length
+          scrub: 1,
+          pin: true,
+          onUpdate: (self) => {
+            const progress = self.progress;
+            const targetIdx = Math.min(6, Math.max(0, Math.round(progress * 6)));
+            setActiveIndex(targetIdx);
+          }
+        }
+      });
+
+      // Animate Card Stacking Transitions
+      for (let i = 1; i < 7; i++) {
+        const position = i - 1; // absolute start position in timeline
+
+        // 1. Outgoing Card (i-1) - moves up slightly, scales down slightly, remains fully opaque
+        if (cards[i - 1]) {
+          tl.to(cards[i - 1], {
+            y: "-30px",
+            opacity: 1,
+            scale: 0.97,
+            duration: 1,
+            ease: "none"
+          }, position);
+        }
+
+        // 2. Incoming Card (i) - slides up, remains fully opaque
+        if (cards[i]) {
+          tl.fromTo(cards[i],
+            { y: "100vh", opacity: 1, scale: 1 },
+            { y: "0px", opacity: 1, scale: 1, duration: 1, ease: "none" },
+            position
+          );
+        }
       }
-      tl.kill();
+    }, containerRef);
+
+    return () => {
+      ctx.revert(); // Automatically reverts all timelines and kills ScrollTriggers
     };
   }, []);
 
@@ -457,35 +466,70 @@ export default function InteractiveSelector() {
 
         /* Responsive Mobile Layout (Tablet and Mobile stack) */
         @media (max-width: 1023px) {
+          .destinations-stack-section {
+            height: auto !important;
+            padding: 40px 0 !important;
+          }
+
+          .destinations-sticky-viewport {
+            position: relative !important;
+            height: auto !important;
+            overflow: visible !important;
+            display: block !important;
+            padding: 0 !important;
+          }
+
           .destinations-cards-container {
-            width: 94%;
-            height: 80vh;
-            min-height: 500px;
-            max-height: auto;
+            width: 100% !important;
+            height: auto !important;
+            min-height: auto !important;
+            max-height: none !important;
+            display: flex !important;
+            flex-direction: row !important;
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
+            scroll-snap-type: x mandatory !important;
+            gap: 20px !important;
+            padding: 10px 24px 30px 24px !important;
+            justify-content: flex-start !important;
+            align-items: stretch !important;
+            box-sizing: border-box !important;
+            scrollbar-width: none; /* Hide scrollbar for clean UI */
+          }
+          
+          .destinations-cards-container::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Safari/Chrome */
           }
 
           .destination-card {
-            flex-direction: column-reverse;
-            padding: 0;
-            border-radius: 24px;
-            justify-content: flex-end;
-            gap: 0;
+            position: relative !important;
+            width: 85vw !important;
+            max-width: 340px !important;
+            height: 520px !important;
+            flex-shrink: 0 !important;
+            scroll-snap-align: center !important;
+            flex-direction: column-reverse !important;
+            border-radius: 24px !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+            opacity: 1 !important;
+            transform: none !important;
           }
 
           .card-left-panel {
-            width: 100%;
-            height: 62%;
-            padding: 16px 20px;
-            justify-content: center;
+            width: 100% !important;
+            height: 60% !important;
+            padding: 20px !important;
+            justify-content: flex-start !important;
+            z-index: 5;
           }
 
           .left-panel-content {
-            max-width: 100%;
+            max-width: 100% !important;
           }
 
           .card-right-panel {
-            width: 100%;
-            height: 38%;
+            width: 100% !important;
+            height: 40% !important;
             border-radius: 0;
           }
 
@@ -494,50 +538,51 @@ export default function InteractiveSelector() {
           }
 
           .dest-editorial-heading {
-            font-size: 1.4rem;
-            margin-bottom: 8px;
+            font-size: 1.35rem !important;
+            margin-bottom: 8px !important;
+            line-height: 1.2 !important;
           }
 
           .dest-country-heading {
-            font-size: 1.25rem;
+            font-size: 1.25rem !important;
           }
 
           .dest-country-name-script {
-            font-size: 1.75rem;
+            font-size: 1.75rem !important;
           }
 
           .dest-editorial-description {
-            font-size: 0.82rem;
-            line-height: 1.45;
-            margin-bottom: 8px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            font-size: 0.82rem !important;
+            line-height: 1.45 !important;
+            margin-bottom: 8px !important;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 2 !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
           }
 
           .dest-feature-pills-container {
-            margin-bottom: 12px;
-            gap: 6px;
+            margin-bottom: 12px !important;
+            gap: 6px !important;
           }
 
           .dest-feature-pill {
-            padding: 4px 10px;
-            font-size: 0.65rem;
+            padding: 4px 10px !important;
+            font-size: 0.65rem !important;
           }
 
           .dest-explore-button {
-            padding: 8px 20px;
-            font-size: 0.72rem;
+            padding: 8px 20px !important;
+            font-size: 0.72rem !important;
           }
           
           .dest-number-label {
-            margin-bottom: 6px;
+            margin-bottom: 6px !important;
           }
           
           .dest-meta-container {
-            margin-bottom: 6px;
-            gap: 4px;
+            margin-bottom: 6px !important;
+            gap: 4px !important;
           }
         }
       `}</style>

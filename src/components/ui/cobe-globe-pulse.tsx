@@ -66,9 +66,11 @@ export function GlobePulse({
     }
     window.addEventListener("pointermove", handlePointerMove, { passive: true })
     window.addEventListener("pointerup", handlePointerUp, { passive: true })
+    window.addEventListener("pointercancel", handlePointerUp, { passive: true })
     return () => {
       window.removeEventListener("pointermove", handlePointerMove)
       window.removeEventListener("pointerup", handlePointerUp)
+      window.removeEventListener("pointercancel", handlePointerUp)
     }
   }, [handlePointerUp])
 
@@ -78,21 +80,23 @@ export function GlobePulse({
     let globe: ReturnType<typeof createGlobe> | null = null
     let animationId: number
     let phi = 0
+    let currentWidth = canvas.offsetWidth
 
-    function init() {
-      const width = canvas.offsetWidth
-      if (width === 0 || globe) return
+    function init(initialWidth: number) {
+      if (globe) return
 
-      // Reddish touch to the globe (diffuse, baseColor, markerColor, glowColor in red tones)
+      const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+      const mapSamples = isMobile ? 6000 : 12000;
+
       globe = createGlobe(canvas, {
         devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
-        width,
-        height: width,
+        width: initialWidth,
+        height: initialWidth,
         phi: 0,
         theta: 0.2,
         dark: 1,
         diffuse: 1.5,
-        mapSamples: 16000,
+        mapSamples,
         mapBrightness: 10,
         baseColor: [0.35, 0.12, 0.12],        // Subtle dark red/brown landmasses
         markerColor: [0.95, 0.22, 0.22],      // Bright crimson markers
@@ -109,6 +113,8 @@ export function GlobePulse({
       function animate() {
         if (!isPausedRef.current) phi += speed
         globe!.update({
+          width: currentWidth,
+          height: currentWidth,
           phi: phi + phiOffsetRef.current + dragOffset.current.phi,
           theta: 0.2 + thetaOffsetRef.current + dragOffset.current.theta,
         })
@@ -118,21 +124,23 @@ export function GlobePulse({
       setTimeout(() => canvas && (canvas.style.opacity = "1"))
     }
 
-    if (canvas.offsetWidth > 0) {
-      init()
-    } else {
-      const ro = new ResizeObserver((entries) => {
-        if (entries[0]?.contentRect.width > 0) {
-          ro.disconnect()
-          init()
+    const ro = new ResizeObserver((entries) => {
+      const entry = entries[0]
+      if (!entry) return
+      const newWidth = entry.contentRect.width
+      if (newWidth > 0) {
+        currentWidth = newWidth
+        if (!globe) {
+          init(newWidth)
         }
-      })
-      ro.observe(canvas)
-    }
+      }
+    })
+    ro.observe(canvas)
 
     return () => {
       if (animationId) cancelAnimationFrame(animationId)
       if (globe) globe.destroy()
+      ro.disconnect()
     }
   }, [markers, speed])
 

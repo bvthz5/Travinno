@@ -26,8 +26,8 @@ function App() {
   const [currentView, setCurrentView] = useState('home');
   const [showLoader, setShowLoader] = useState(true);
 
-  // Lock logic: locked only in production builds or when not on localhost
-  const isLockedMode = import.meta.env.PROD || (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1');
+  // Lock logic: disabled to allow full access when hosted
+  const isLockedMode = false;
 
   // Starry sky background movement state
   const [stars] = useState(() =>
