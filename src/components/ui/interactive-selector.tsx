@@ -156,11 +156,11 @@ export default function InteractiveSelector() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: container,
-          start: "top top",
+          start: () => window.innerWidth < 1024 ? "top 80px" : "top top", // Stops card exactly under the mobile navbar
           end: "+=1400vh", // Increased container height for longer scroll distance
           pin: true,
           anticipatePin: 1, // Smooths pinning on touch/mobile devices
-          scrub: 1, // Smooth catch-up delay
+          scrub: 1.5, // Slower catch-up delay for smooth, steady, and unhurried transition
           invalidateOnRefresh: true, // Recalculate on refresh
           onUpdate: (self) => {
             const progress = self.progress;
@@ -196,11 +196,10 @@ export default function InteractiveSelector() {
         // 1. Outgoing Card (i-1) - moves up slightly, scales down slightly
         if (cards[i - 1]) {
           if (checkMobile) {
-            // Simplify outgoing card transformations on mobile to save GPU cycles
+            // Keep the outgoing card fully visible and stationary on mobile (prevents rushing/flashing)
             tl.to(cards[i - 1], {
-              opacity: 0.1,
+              opacity: 1,
               duration: transitionDuration,
-              ease: "power1.inOut"
             }, startPos);
           } else {
             tl.to(cards[i - 1], {

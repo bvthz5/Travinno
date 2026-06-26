@@ -109,6 +109,8 @@ function App() {
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
+      smoothTouch: true, // Enable touch smoothing on mobile
+      syncTouch: true,   // Synchronize touch scroll physics
     });
     window.lenis = lenis;
 
