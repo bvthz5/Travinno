@@ -92,7 +92,7 @@ export default function ContactCTA() {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        padding: '120px 24px',
+        padding: 'clamp(40px, 6vw, 70px) 24px clamp(80px, 10vw, 120px) 24px',
         boxSizing: 'border-box'
       }}
     >
@@ -282,12 +282,12 @@ export default function ContactCTA() {
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
           style={{
             display: 'flex',
-            gap: '16px',
+            gap: '12px',
             justifyContent: 'center',
             alignItems: 'center',
-            flexWrap: 'wrap',
+            flexWrap: 'nowrap',
             width: '100%',
-            padding: '0 20px',
+            padding: '0 16px',
             boxSizing: 'border-box'
           }}
         >
@@ -295,7 +295,7 @@ export default function ContactCTA() {
             href="mailto:hello@travinno.com"
             className="contact-cta-primary"
             style={{
-              padding: '14px 36px',
+              padding: '14px 28px',
               borderRadius: '30px',
               fontFamily: 'var(--font-sans)',
               fontSize: '0.85rem',
@@ -314,7 +314,7 @@ export default function ContactCTA() {
             href="#destinations"
             className="contact-cta-secondary"
             style={{
-              padding: '14px 36px',
+              padding: '14px 28px',
               borderRadius: '30px',
               fontFamily: 'var(--font-sans)',
               fontSize: '0.85rem',
@@ -327,7 +327,7 @@ export default function ContactCTA() {
               display: 'inline-block'
             }}
           >
-            Explore Work
+            Destinations
           </a>
         </motion.div>
       </div>

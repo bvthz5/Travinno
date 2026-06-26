@@ -540,7 +540,8 @@ export default function Header() {
                 right: 0,
                 width: '85%',
                 maxWidth: '360px',
-                height: '100vh',
+                height: '100vh', // fallback
+                height: '100dvh', // dynamic viewport height for mobile
                 backgroundColor: '#050505',
                 borderLeft: '1px solid rgba(255, 255, 255, 0.08)',
                 borderRadius: '32px 0px 0px 32px',
@@ -549,13 +550,17 @@ export default function Header() {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                padding: '32px 24px',
+                padding: '24px 20px calc(80px + env(safe-area-inset-bottom)) 20px',
                 boxSizing: 'border-box',
-                pointerEvents: 'auto'
+                pointerEvents: 'auto',
+                overflowY: 'auto',
+                WebkitOverflowScrolling: 'touch',
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none'
               }}
             >
               {/* Top Section (Header & Links) */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 {/* Header: Logo + Close Button */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   {/* Logo (Travinno SVG logo pin) */}
@@ -605,7 +610,7 @@ export default function Header() {
                 <div style={{ width: '100%', height: '1px', backgroundColor: 'rgba(255, 255, 255, 0.05)', marginTop: '-8px' }} />
 
                 {/* Navigation Links list */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                   {/* Link 1: Home */}
                   <div style={{ position: 'relative' }}>
                     {activeMobileItem === 'home' && (
@@ -632,7 +637,7 @@ export default function Header() {
                         display: 'flex',
                         alignItems: 'center',
                         gap: '16px',
-                        padding: '12px 0px 12px 20px',
+                        padding: '10px 0px 10px 16px',
                         color: activeMobileItem === 'home' ? '#800000' : 'rgba(255, 255, 255, 0.7)',
                         textDecoration: 'none',
                         fontFamily: 'var(--font-sans)',
@@ -673,7 +678,7 @@ export default function Header() {
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'space-between',
-                          padding: '12px 0px 12px 20px',
+                          padding: '10px 0px 10px 16px',
                           background: 'none',
                           border: 'none',
                           color: activeMobileItem === 'company' ? '#800000' : 'rgba(255, 255, 255, 0.7)',
@@ -777,7 +782,7 @@ export default function Header() {
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'space-between',
-                          padding: '12px 0px 12px 20px',
+                          padding: '10px 0px 10px 16px',
                           background: 'none',
                           border: 'none',
                           color: activeMobileItem === 'destinations' ? '#800000' : 'rgba(255, 255, 255, 0.7)',
@@ -885,7 +890,7 @@ export default function Header() {
                         display: 'flex',
                         alignItems: 'center',
                         gap: '16px',
-                        padding: '12px 0px 12px 20px',
+                        padding: '10px 0px 10px 16px',
                         color: isLockedMode
                           ? 'rgba(255, 255, 255, 0.35)'
                           : activeMobileItem === 'contact' ? '#800000' : 'rgba(255, 255, 255, 0.7)',
@@ -905,7 +910,7 @@ export default function Header() {
               </div>
 
               {/* Bottom Section (CTA + Utilities) */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', alignItems: 'center' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center' }}>
                 {/* CTA Button "Get in Touch" */}
                 {isLockedMode ? (
                   <a

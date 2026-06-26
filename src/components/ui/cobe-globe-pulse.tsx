@@ -97,6 +97,7 @@ export function GlobePulse({
 
       const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
       const mapSamples = isMobile ? 6000 : 12000;
+      const currentSpeed = isMobile ? speed * 2.5 : speed;
 
       globe = createGlobe(canvas, {
         devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
@@ -122,7 +123,7 @@ export function GlobePulse({
 
       function animate() {
         if (isVisible && !isPausedRef.current) {
-          phi += speed
+          phi += currentSpeed
           globe!.update({
             width: currentWidth,
             height: currentWidth,

@@ -164,7 +164,7 @@ export default function InteractiveSelector() {
           invalidateOnRefresh: true, // Recalculate on refresh
           onUpdate: (self) => {
             const progress = self.progress;
-            const t = progress * 5.0; // Mapped to the total timeline transitions
+            const t = progress * 5.8; // Mapped to the total timeline transitions including the hold
             
             // Determine active index based on timeline boundary thresholds
             let activeIdx = 0;
@@ -226,6 +226,9 @@ export default function InteractiveSelector() {
           );
         }
       }
+
+      // Add a hold duration of 0.8s for the last card (Vietnam) so it stays pinned and stationary in the tray
+      tl.to({}, { duration: 0.8 });
     }, containerRef);
 
     // Refresh ScrollTrigger to ensure position parameters are exact
@@ -513,6 +516,10 @@ export default function InteractiveSelector() {
         @media (max-width: 1023px) {
           .destinations-section {
             padding-top: 40px !important;
+          }
+
+          .destinations-cards-wrapper {
+            margin-top: -70px !important;
           }
 
           .destinations-stack-section {

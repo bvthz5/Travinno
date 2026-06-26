@@ -372,7 +372,7 @@ function App() {
                 <span className="journey-allura-text" style={{ marginTop: '4px' }}>Borders</span>
               </h2>
             </div>
-            <div style={{ position: 'relative', zIndex: 10 }}>
+            <div className="destinations-cards-wrapper" style={{ position: 'relative', zIndex: 10 }}>
               <DemoOne />
             </div>
           </div>

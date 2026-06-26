@@ -786,32 +786,6 @@ export default function OurJourney() {
               {/* Vertical Stack Timeline */}
               <div style={{ position: 'relative', paddingLeft: '32px' }}>
                 
-                {/* Vertical Axis Line */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    left: '12px',
-                    top: '10px',
-                    bottom: '10px',
-                    width: '1px',
-                    backgroundColor: 'rgba(255, 255, 255, 0.12)'
-                  }}
-                />
-                
-                {/* Active Vertical Progress Overlay */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    left: '12px',
-                    top: '10px',
-                    width: '1px',
-                    backgroundColor: '#C1121F',
-                    height: `calc(${(activeIndex / 6) * 100}% - 4px)`,
-                    maxHeight: '100%',
-                    transition: 'height 0.4s cubic-bezier(0.25, 1, 0.5, 1)'
-                  }}
-                />
-
                 {/* Vertical Loop */}
                 {milestones.map((milestone, idx) => {
                   const isActive = idx === activeIndex;
@@ -826,6 +800,48 @@ export default function OurJourney() {
                         cursor: 'pointer'
                       }}
                     >
+                      {/* Vertical line segment centered behind the pointer/dot */}
+                      <div
+                        style={{
+                          position: 'absolute',
+                          left: '-24px',
+                          top: idx === 0 ? '16px' : '0px', // start line at the first dot center
+                          bottom: idx === milestones.length - 1 ? 'calc(100% - 16px)' : '-24px', // end line at the last dot center
+                          width: '1px',
+                          transform: 'translateX(-50%)',
+                          zIndex: 1
+                        }}
+                      >
+                        {/* Background Grey Line segment */}
+                        <div
+                          style={{
+                            position: 'absolute',
+                            top: 0,
+                            bottom: 0,
+                            left: 0,
+                            width: '100%',
+                            backgroundColor: 'rgba(255, 255, 255, 0.12)'
+                          }}
+                        />
+                        {/* Active Red Line segment */}
+                        {isPassed && (
+                          <div
+                            style={{
+                              position: 'absolute',
+                              top: 0,
+                              // If it is the active item, the red line stops at the pointer center (16px from top)
+                              // otherwise it fills the entire segment to the bottom of this item's spacing
+                              bottom: isActive 
+                                ? (idx === 0 ? '100%' : 'calc(100% - 16px)') // stops at top: 16px
+                                : 0,
+                              left: 0,
+                              width: '100%',
+                              backgroundColor: '#C1121F',
+                              transition: 'bottom 0.4s cubic-bezier(0.25, 1, 0.5, 1)'
+                            }}
+                          />
+                        )}
+                      </div>
                       {/* Active Indicator Pin / Dot on vertical line */}
                       {isActive ? (
                         <img
