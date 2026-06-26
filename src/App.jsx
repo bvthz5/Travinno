@@ -145,10 +145,8 @@ function App() {
     <div
       style={{
         width: '100%',
-        minHeight: '100vh',
         backgroundColor: '#050505',
-        overflowX: 'hidden',
-        overflowY: 'auto'
+        overflowX: 'hidden'
       }}
     >
       {/* Fullscreen Loading Experience */}
