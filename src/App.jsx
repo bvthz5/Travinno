@@ -7,14 +7,14 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from '@studio-freight/lenis';
 
-const EditorialSection = lazy(() => import('./components/EditorialSection'));
-const ExpertiseSection = lazy(() => import('./components/ExpertiseSection'));
-const DemoOneWrapper   = lazy(() => import('./components/ui/demo').then(m => ({ default: m.DemoOne })));
-const OurJourney       = lazy(() => import('./components/OurJourney'));
-const LogoCloudSection = lazy(() => import('./components/LogoCloudSection'));
-const WhyTravinno      = lazy(() => import('./components/WhyTravinno'));
-const ContactCTA       = lazy(() => import('./components/ContactCTA'));
-const Footer           = lazy(() => import('./components/Footer'));
+import EditorialSection from './components/EditorialSection';
+import ExpertiseSection from './components/ExpertiseSection';
+import { DemoOne as DemoOneWrapper } from './components/ui/demo';
+import OurJourney from './components/OurJourney';
+import LogoCloudSection from './components/LogoCloudSection';
+import WhyTravinno from './components/WhyTravinno';
+import ContactCTA from './components/ContactCTA';
+import Footer from './components/Footer';
 const ParallaxDemo     = lazy(() => import('./demos/default'));
 const TeamPage         = lazy(() => import('./components/TeamPage'));
 const ServicesPage     = lazy(() => import('./components/ServicesPage'));
@@ -237,12 +237,12 @@ function App() {
 
           {/* Minimalist Editorial Section */}
           <div className="home-editorial-fade-wrap">
-            <Suspense fallback={null}><EditorialSection /></Suspense>
+            <EditorialSection />
           </div>
 
           {/* Our Expertise Section */}
           <div id="services" className="home-services-fade-wrap">
-            <Suspense fallback={null}><ExpertiseSection /></Suspense>
+            <ExpertiseSection />
           </div>
 
           {/* Destinations Showcase Section */}
@@ -253,8 +253,6 @@ function App() {
               backgroundColor: '#050505',
               padding: '100px 24px 0 24px',
               position: 'relative',
-              clipPath: 'inset(0 0 0 0)',
-              WebkitClipPath: 'inset(0 0 0 0)',
               zIndex: 5,
               overflow: 'hidden'
             }}
@@ -401,34 +399,34 @@ function App() {
               </h2>
             </div>
             <div className="destinations-cards-wrapper" style={{ position: 'relative', zIndex: 10 }}>
-              <Suspense fallback={null}><DemoOneWrapper /></Suspense>
+              <DemoOneWrapper />
             </div>
           </div>
 
 
           {/* Our Journey Section */}
           <div className="home-journey-fade-wrap">
-            <Suspense fallback={null}><OurJourney /></Suspense>
+            <OurJourney />
           </div>
 
 
           {/* Partner Section */}
           <div className="home-contact-fade-wrap">
-            <Suspense fallback={null}><LogoCloudSection /></Suspense>
+            <LogoCloudSection />
           </div>
 
           {/* Why Travinno Grid Section */}
           <div className="home-why-fade-wrap">
-            <Suspense fallback={null}><WhyTravinno /></Suspense>
+            <WhyTravinno />
           </div>
 
           {/* Contact CTA Section */}
           <div className="home-contact-cta-fade-wrap">
-            <Suspense fallback={null}><ContactCTA /></Suspense>
+            <ContactCTA />
           </div>
 
           {/* Footer Section */}
-          <Suspense fallback={null}><Footer /></Suspense>
+          <Footer />
         </>
       )}
     </div>
