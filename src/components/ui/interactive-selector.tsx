@@ -253,8 +253,20 @@ export default function InteractiveSelector() {
         zIndex: 5
       }}
     >
+      {/* Anti-bleed block: Prevents previous section from bleeding into viewport if GSAP pins early on mobile/iOS Safari */}
+      <div style={{
+        position: 'absolute',
+        top: '-300px',
+        left: 0,
+        width: '100%',
+        height: '300px',
+        backgroundColor: '#050505',
+        pointerEvents: 'none',
+        zIndex: -1
+      }} />
 
-
+      <div className="destinations-sticky-viewport">
+        {/* ... */}
       <style>{`
         .destinations-sticky-viewport {
           position: absolute;
