@@ -132,9 +132,9 @@ export default function InteractiveSelector() {
         // Programmatically set initial deck coordinates
         cards.forEach((card, idx) => {
           if (idx === 0) {
-            gsap.set(card, { y: "0px", opacity: 1, scale: 1 });
+            gsap.set(card, { y: "0%", opacity: 1, scale: 1 });
           } else {
-            gsap.set(card, { y: "100vh", opacity: 1, scale: 1 });
+            gsap.set(card, { y: "100%", opacity: 1, scale: 1 });
           }
         });
 
@@ -179,9 +179,9 @@ export default function InteractiveSelector() {
 
           // Slide up incoming deck item (i)
           tl.fromTo(cards[i],
-            { y: "100vh", scale: 1 },
+            { y: "100%", scale: 1 },
             {
-              y: "0px",
+              y: "0%",
               scale: 1,
               duration: transitionDuration,
               ease: "power1.inOut",
@@ -245,10 +245,12 @@ export default function InteractiveSelector() {
       className="destinations-stack-section"
       style={{
         position: 'relative',
-        height: '100vh', // Clean 100vh height for pinning
+        height: '100dvh', // Use dvh for iOS Safari dynamic viewport height
+        minHeight: '100vh',
         backgroundColor: 'transparent',
         width: '100%',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
+        zIndex: 5
       }}
     >
       <style>{`
@@ -313,8 +315,7 @@ export default function InteractiveSelector() {
           will-change: transform, opacity;
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
-          transform: translate3d(0, 0, 0);
-          transform-style: preserve-3d;
+          transform: translateZ(0); /* Fixed layer bleeding on iOS */
         }
 
         /* LEFT SIDE (45%) */
@@ -520,9 +521,10 @@ export default function InteractiveSelector() {
           }
 
           .destinations-stack-section {
-            height: 100vh !important;
             height: 100dvh !important;
+            min-height: 100vh !important;
             padding: 0 !important;
+            z-index: 5 !important;
           }
 
           .destinations-sticky-viewport {
@@ -561,8 +563,7 @@ export default function InteractiveSelector() {
             will-change: transform, opacity;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
-            transform: translate3d(0, 0, 0);
-            transform-style: preserve-3d;
+            transform: translateZ(0) !important;
           }
 
           .card-left-panel {
