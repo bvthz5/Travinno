@@ -537,19 +537,19 @@ export default function InteractiveSelector() {
             overflow: hidden;
             display: flex !important;
             flex-direction: column !important;
-            justify-content: center !important;
+            justify-content: flex-start !important;
             align-items: center !important;
-            gap: 16px !important;
-            padding: 10px 0 !important;
+            gap: 12px !important;
+            padding: 80px 0 20px 0 !important;
             box-sizing: border-box !important;
           }
 
           .destinations-cards-container {
             width: 90% !important;
-            height: 66vh !important;
-            height: 66dvh !important;
-            max-height: 520px !important;
-            min-height: 380px !important;
+            height: 60vh !important;
+            height: 60dvh !important;
+            max-height: 480px !important;
+            min-height: 340px !important;
             display: flex !important;
             justify-content: center !important;
             align-items: center !important;
@@ -641,6 +641,45 @@ export default function InteractiveSelector() {
             gap: 4px !important;
           }
 
+        }
+
+        /* Small phone screens (iPhone SE, iPhone 12 mini, etc.) */
+        @media (max-width: 430px) {
+          .destinations-sticky-viewport {
+            padding: 70px 0 16px 0 !important;
+            gap: 10px !important;
+          }
+
+          .destinations-cards-container {
+            height: 58vh !important;
+            height: 58dvh !important;
+            max-height: 450px !important;
+            min-height: 320px !important;
+          }
+
+          .card-left-panel {
+            height: 60% !important;
+            padding: 12px 14px !important;
+          }
+
+          .card-right-panel {
+            height: 40% !important;
+          }
+        }
+
+        /* Very small phones (iPhone SE 1st gen, 375px and below) */
+        @media (max-width: 375px) {
+          .destinations-sticky-viewport {
+            padding: 60px 0 12px 0 !important;
+            gap: 8px !important;
+          }
+
+          .destinations-cards-container {
+            height: 56vh !important;
+            height: 56dvh !important;
+            max-height: 420px !important;
+            min-height: 300px !important;
+          }
         }
       `}</style>
 
