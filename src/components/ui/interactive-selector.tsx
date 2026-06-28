@@ -253,17 +253,7 @@ export default function InteractiveSelector() {
         zIndex: 5
       }}
     >
-      {/* Pinned Heading */}
-      <div className="destinations-heading-container" style={{ position: 'absolute', top: 'min(10%, 80px)', left: '0', width: '100%', zIndex: 20, textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', pointerEvents: 'none' }}>
-        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '4px 10px', border: '1px solid rgba(193, 18, 31, 0.15)', borderRadius: '100px', fontFamily: 'var(--font-sans)', fontSize: '0.72rem', fontWeight: 500, letterSpacing: '0.05em', color: 'rgba(255, 255, 255, 0.85)', marginBottom: '12px', background: 'rgba(193, 18, 31, 0.05)', backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)' }}>
-          <span style={{ width: '6px', height: '6px', backgroundColor: '#C1121F', borderRadius: '50%', display: 'inline-block' }} />
-          Fly Higher
-        </span>
-        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 3.8vw, 3.2rem)', fontWeight: 500, lineHeight: 1.15, letterSpacing: '0.02em', color: '#F5F2EC', margin: '0 0 16px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-          <span>Beyond Every</span>
-          <span className="journey-allura-text" style={{ marginTop: '4px' }}>Borders</span>
-        </h2>
-      </div>
+
 
       <style>{`
         .destinations-sticky-viewport {
@@ -276,10 +266,11 @@ export default function InteractiveSelector() {
           background-color: transparent;
           display: flex;
           flex-direction: column;
-          justify-content: flex-end;
+          justify-content: center;
           align-items: center;
+          gap: 20px;
           box-sizing: border-box;
-          padding-bottom: max(6vh, 40px);
+          padding: 10px 0;
         }
 
         .destinations-grid-bg {
@@ -301,9 +292,9 @@ export default function InteractiveSelector() {
         .destinations-cards-container {
           position: relative;
           width: 92%;
-          height: 72vh; /* Reduced height by 15-20% for a wider cinematic feel */
-          max-height: 720px;
-          min-height: 520px;
+          height: 68vh; /* Adjusted slightly to fit heading perfectly */
+          max-height: 680px;
+          min-height: 480px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -546,9 +537,10 @@ export default function InteractiveSelector() {
             overflow: hidden;
             display: flex !important;
             flex-direction: column !important;
-            justify-content: flex-end !important;
+            justify-content: center !important;
             align-items: center !important;
-            padding-bottom: max(4vh, 20px) !important;
+            gap: 16px !important;
+            padding: 10px 0 !important;
             box-sizing: border-box !important;
           }
 
@@ -656,6 +648,18 @@ export default function InteractiveSelector() {
       <div className="destinations-sticky-viewport">
         {/* Subtle grid background */}
         <div className="destinations-grid-bg" />
+
+        {/* Pinned Heading inside the flex viewport to avoid overlap */}
+        <div className="destinations-heading-container" style={{ position: 'relative', zIndex: 20, textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', pointerEvents: 'none' }}>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '4px 10px', border: '1px solid rgba(193, 18, 31, 0.15)', borderRadius: '100px', fontFamily: 'var(--font-sans)', fontSize: '0.72rem', fontWeight: 500, letterSpacing: '0.05em', color: 'rgba(255, 255, 255, 0.85)', marginBottom: '8px', background: 'rgba(193, 18, 31, 0.05)', backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)' }}>
+            <span style={{ width: '6px', height: '6px', backgroundColor: '#C1121F', borderRadius: '50%', display: 'inline-block' }} />
+            Fly Higher
+          </span>
+          <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.8rem, 3.8vw, 3.2rem)', fontWeight: 500, lineHeight: 1.15, letterSpacing: '0.02em', color: '#F5F2EC', margin: '0 0 4px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+            <span>Beyond Every</span>
+            <span className="journey-allura-text" style={{ marginTop: '2px' }}>Borders</span>
+          </h2>
+        </div>
 
         {/* Floating Stack Container */}
         <div className="destinations-cards-container">
