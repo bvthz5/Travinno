@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
+    "types": ["vite/client"],
     "baseUrl": ".",
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "moduleResolution": "node",
     "paths": {
       "@/*": ["./src/*"]
     }

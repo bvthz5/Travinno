@@ -295,7 +295,7 @@ export default function CinematicHero() {
               src={dest.image}
               alt={getDestinationAltText(dest.name)}
               loading={idx === 0 ? "eager" : "lazy"}
-              {...(idx === 0 ? { fetchpriority: "high" } : { decoding: "async" })}
+              {...(idx === 0 ? { fetchPriority: "high" } : { decoding: "async" })}
               style={{
                 width: '100%',
                 height: '100%',

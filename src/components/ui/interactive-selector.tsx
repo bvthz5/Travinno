@@ -154,9 +154,13 @@ export default function InteractiveSelector() {
         const transitionDuration = 1.0;
         const step = 0.8;
         const checkMobile = window.innerWidth < 1024;
+        
+        // Add initial holding buffer so the first card stays in place briefly before animating
+        const initialBuffer = 0.6;
+        tl.to({}, { duration: initialBuffer });
 
         for (let i = 1; i < cards.length; i++) {
-          const startPos = (i - 1) * step;
+          const startPos = initialBuffer + (i - 1) * step;
 
           // Scale down outgoing deck item (i-1)
           if (checkMobile) {
