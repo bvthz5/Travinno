@@ -247,7 +247,7 @@ export default function InteractiveSelector() {
         position: 'relative',
         height: '100dvh', // Use dvh for iOS Safari dynamic viewport height
         minHeight: '100vh',
-        backgroundColor: 'transparent',
+        backgroundColor: '#050505',
         width: '100%',
         boxSizing: 'border-box',
         zIndex: 5
@@ -550,7 +550,7 @@ export default function InteractiveSelector() {
             justify-content: flex-start !important;
             align-items: center !important;
             gap: 12px !important;
-            padding: 80px 0 20px 0 !important;
+            padding: 120px 0 20px 0 !important;
             box-sizing: border-box !important;
           }
 
@@ -656,7 +656,7 @@ export default function InteractiveSelector() {
         /* Small phone screens (iPhone SE, iPhone 12 mini, etc.) */
         @media (max-width: 430px) {
           .destinations-sticky-viewport {
-            padding: 70px 0 16px 0 !important;
+            padding: 110px 0 16px 0 !important;
             gap: 10px !important;
           }
 
@@ -680,7 +680,7 @@ export default function InteractiveSelector() {
         /* Very small phones (iPhone SE 1st gen, 375px and below) */
         @media (max-width: 375px) {
           .destinations-sticky-viewport {
-            padding: 60px 0 12px 0 !important;
+            padding: 100px 0 12px 0 !important;
             gap: 8px !important;
           }
 
