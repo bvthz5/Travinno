@@ -265,8 +265,6 @@ export default function InteractiveSelector() {
         zIndex: -1
       }} />
 
-      <div className="destinations-sticky-viewport">
-        {/* ... */}
       <style>{`
         .destinations-sticky-viewport {
           position: absolute;
