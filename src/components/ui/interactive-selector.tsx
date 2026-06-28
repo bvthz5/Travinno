@@ -512,11 +512,11 @@ export default function InteractiveSelector() {
         /* Responsive Mobile Layout (Tablet and Mobile stack) */
         @media (max-width: 1023px) {
           .destinations-section {
-            padding-top: 40px !important;
+            padding-top: 80px !important;
           }
 
           .destinations-cards-wrapper {
-            margin-top: -70px !important;
+            margin-top: 0 !important;
           }
 
           .destinations-stack-section {
